@@ -21,5 +21,9 @@ GitHub URL: https://github.com/PDKetchum/module-11-note-taker
 
 Heroku URL: https://pxiong-note-taker.herokuapp.com/notes
 
+## Credits:
+
+Referenced UMN Express Student Mini Project
+
 ![](screenshot.png)
 _Screenshot of page_
