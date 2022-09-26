@@ -6,20 +6,24 @@ const {
   readFromFile,
 } = require("../helpers/fsUtils");
 
+// GET route for retrieving all notes
 apiRoutes.get("/api/notes", (req, res) =>
   readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)))
 );
 
+// POST route for new notes
 apiRoutes.post("/api/notes", (req, res) => {
   const { title, text } = req.body;
-
+  // If user provides a title and text, create a new note
   if (title && text) {
     const newNote = {
       title,
       text,
+      // give the note a unique ID
       id: uuidv4(),
     };
 
+    // push note to json file
     readAndAppend(newNote, "./db/db.json");
 
     const response = {
@@ -40,7 +44,7 @@ apiRoutes.delete("/api/notes/:id", (req, res) => {
   readFromFile("./db/db.json")
     .then((data) => JSON.parse(data))
     .then((json) => {
-      // Make a new array of all tips except the one with the ID provided in the URL
+      // Make a new array of all notes except the one with the ID provided in the URL
       const result = json.filter((note) => note.id !== id);
 
       // Save that array to the filesystem
